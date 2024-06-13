@@ -1,2 +1,2 @@
 # Onliy
-공사중 기둘기둘<br>omg please wait
+공사중 기둘기둘<br>IM CURRENTLY MAKING THIS PAGE SO PLZ WAIT
