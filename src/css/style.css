@@ -1,0 +1,210 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(#001d15, #000);
+    color: white;
+    font-family: 'Minecraft', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+p, h2 {
+    transition: all 1s ease;
+}
+
+p:hover, h2:hover {
+    letter-spacing: 1px;
+}
+
+.main-text {
+    opacity: 0;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    top: 15%;
+    margin: auto;
+    font-size: 70px;
+    font-weight: bold;
+    transition: all 1s ease;
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ffb3, 0 0 40px #00ffb3;
+}
+
+.main-text:hover {
+    letter-spacing: 3px;
+}
+
+.main-text:hover {
+    text-shadow: 0 0 10px #fff, 0 0 20px #aaccff, 0 0 40px #aaccff;
+}
+
+.audio-controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 4;
+    gap: 10px;
+    align-items: center;
+    background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #00FFB2;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    backdrop-filter: blur(5px);
+    height: 30px;
+}
+
+.volume-slider {
+    width: 150px;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(#6b817b);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+@keyframes gridScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
+
+.grid-overlay {
+    position: fixed;
+    top: 10;
+    left: 10;
+    width: 200vw;
+    height: 200vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-repeat: repeat;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: center center;
+    animation: gridScroll 2s linear infinite;
+}
+
+.content {
+    display: none;
+    max-width: 8000px;
+    width: 370px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    border: 2px solid #00FFB2;
+    border-radius: 8px;
+    background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.click-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 3;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.bio-section {
+    margin: 20px 0;
+}
+
+.bio-section h2 {
+    margin-bottom: 15px;
+}
+
+.bio-section p {
+    line-height: 0.5;
+}
+
+.hb {
+    color: #5ff;
+}
+
+.hds {
+    color: #0a0;
+}
+
+.kr {
+    background: linear-gradient(to right, #ff7777 0%, #7777ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.tetrio {
+    color: #7c5dac;
+}
+
+.u {
+    color: #ff4414;
+}
+
+.social-section {
+    margin: 30px 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    transition: all 1s;
+    padding: 10px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+    border-radius: 8px;
+}
+
+.social-link:hover {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.social-link img {
+    scale: 0.2;
+    margin: -90px;
+    color: white;
+    transition: transform 0.5s;
+}
+
+.social-link:hover i {
+    transform: scale(1.1);
+}
+
+.social-link:hover img {
+    transform: scale(1.1);
+}
