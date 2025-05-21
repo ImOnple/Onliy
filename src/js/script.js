@@ -66,7 +66,6 @@ let currentIndex = 0;
 
 function updateText() {
     // 페이드 아웃 효과 (1.5초)
-    mainText.style.transition = 'opacity 1.5s ease';
     mainText.style.opacity = '0';
     
     setTimeout(() => {
