@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(rgb(0, 44, 30), #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    font-family: "Minecraft";
+}
+
+.grid-overlay {
+    position: fixed;
+    width: 200vw;
+    height: 200vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 100% 100%;
+    background-repeat: repeat;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: center center;
+    animation: gridScroll 2s linear infinite;
+}
+
+@keyframes gridScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
+
+.error-content {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-title {
+    font-size: 120px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ffb3, 0 0 40px #00ffb3, 6px 6.5px #3f3f3f;
+}
+
+.error-message {
+    font-size: 32px;
+    margin-top: -40px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 3px #fff, 0 0 10px #00ffb3, 3px 3px #3f3f3f;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
+    border: 2px solid #00FFB2;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-shadow: 0 0 3px #fff, 0 0 10px #00ffb3, 2px 1.5px #3f3f3f;
+}
+
+.home-button:hover {
+    background: linear-gradient(0deg, rgba(0, 255, 179, 0.493), rgba(0, 0, 0, 0.9));
+    box-shadow: 0 0 15px rgba(0, 255, 179, 0.664);
+}

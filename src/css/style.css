@@ -12,8 +12,20 @@ body {
     user-select: none;
 }
 
-p, h2 {
+h2 {
     transition: all 1s ease;
+    white-space: nowrap;
+    text-shadow: 2px 2px #3f3f3f;
+}
+
+p {
+    transition: all 1s ease;
+    white-space: nowrap;
+    text-shadow: 1px 1.5px #3f3f3f;
+}
+
+a {
+    text-shadow: 1px 1.5px #3f3f3f;
 }
 
 p:hover, h2:hover {
@@ -30,15 +42,12 @@ p:hover, h2:hover {
     font-size: 70px;
     font-weight: bold;
     transition: all 1s ease;
-    text-shadow: 0 0 10px #fff, 0 0 20px #00ffb3, 0 0 40px #00ffb3;
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ffb3, 0 0 40px #00ffb3, 6px 6.5px #3f3f3f;
 }
 
 .main-text:hover {
     letter-spacing: 3px;
-}
-
-.main-text:hover {
-    text-shadow: 0 0 10px #fff, 0 0 20px #aaccff, 0 0 40px #aaccff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #aaccff, 0 0 40px #aaccff, 6px 6.5px #3f3f3f;
 }
 
 .audio-controls {
@@ -46,30 +55,96 @@ p:hover, h2:hover {
     top: 20px;
     left: 20px;
     z-index: 4;
-    gap: 10px;
+    display: flex;
     align-items: center;
+    gap: 15px;
     background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
-    padding: 15px;
+    padding: 12px 20px;
     border-radius: 8px;
     border: 2px solid #00FFB2;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
     backdrop-filter: blur(5px);
+}
+
+.play-pause-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
     height: 30px;
+    scale: 1.5;
+    filter: drop-shadow(0 0 5px #00ffb3);
+}
+
+.play-pause-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #00FFB2;
+}
+
+.pause-icon {
+    display: none;
+}
+
+.audio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.song-title {
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 0 0 5px #00FFB2;
 }
 
 .volume-slider {
     width: 150px;
-    height: 5px;
-    border-radius: 5px;
-    outline: none;
+    height: 4px;
     -webkit-appearance: none;
     appearance: none;
-    background: linear-gradient(#6b817b);
+    background: linear-gradient(to right, #00FFB2 50%, #2a3a37 50%);
     border-radius: 2px;
     outline: none;
     cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #00FFB2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #00FFB2;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #00FFB2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #00FFB2;
 }
 
 @keyframes gridScroll {
@@ -89,7 +164,7 @@ p:hover, h2:hover {
     height: 200vh;
     background-image: linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
                   linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-size: 50px 50px, 50px 50px, 100% 100%;
     background-repeat: repeat;
     opacity: 0;
     transition: opacity 1s ease;
@@ -101,7 +176,7 @@ p:hover, h2:hover {
 
 .content {
     display: none;
-    max-width: 8000px;
+    max-width: 500px;
     width: 370px;
     padding: 2rem;
     text-align: center;
@@ -117,6 +192,7 @@ p:hover, h2:hover {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    overflow-x: hidden;
 }
 
 .click-message {
@@ -146,25 +222,32 @@ p:hover, h2:hover {
 
 .hb {
     color: #5ff;
+    text-shadow: 1px 1.5px #153f3f;
 }
 
 .hds {
     color: #0a0;
+    text-shadow: 1px 1.5px #002a00;
 }
 
-.kr {
-    background: linear-gradient(to right, #ff7777 0%, #7777ff 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+.kr1 {
+    color: #ff5555;
+    text-shadow: 2px 2px #3f1515;
+}
+
+.kr2 {
+    color: #5555ff;
+    text-shadow: 2px 2px #15153f;
 }
 
 .tetrio {
-    color: #7c5dac;
+    color: #aa00aa;
+    text-shadow: 2px 2px #2a002a;
 }
 
 .u {
-    color: #ff4414;
+    color: #ff5555;
+    text-shadow: 2px 2px #3f1515;
 }
 
 .social-section {
@@ -184,7 +267,7 @@ p:hover, h2:hover {
     align-items: center;
     color: white;
     text-decoration: none;
-    transition: all 1s;
+    transition: all 0.25s ease;
     padding: 10px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
     border-radius: 8px;
@@ -192,13 +275,14 @@ p:hover, h2:hover {
 
 .social-link:hover {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.1));
+    box-shadow: 0 0 20px #0009;
 }
 
 .social-link img {
     scale: 0.2;
     margin: -90px;
     color: white;
-    transition: transform 0.5s;
+    transition: transform 0.25s;
 }
 
 .social-link:hover i {
