@@ -1,4 +1,9 @@
+let isContentVisible = false;
+let isPlaying = false;
+let isTrailEnabled = true;
+
 document.addEventListener('DOMContentLoaded', function() {
+
     const clickMessage = document.getElementById('clickMessage');
     const mainContent = document.getElementById('mainContent');
     const bgMusic = document.getElementById('bgMusic');
@@ -6,11 +11,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioControls = document.getElementById('audioControls');
     const mainText = document.getElementById('mainText');
     const playPauseBtn = document.getElementById('playPauseBtn');
-    let isContentVisible = false;
-    let isPlaying = false;
 
     audioControls.style.display = 'none';
-    bgMusic.volume = 0;
+    
+    // 쿠키에서 볼륨 값 불러오기
+    const cookies = document.cookie.split(';');
+    let volumeLoaded = false;
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name.trim() === 'volume') {
+            const parsedValue = parseInt(value);
+            if (!isNaN(parsedValue) && parsedValue >= 0 && parsedValue <= 100) {
+                volumeSlider.value = parsedValue;
+                bgMusic.volume = parsedValue / 100;
+                volumeSlider.style.background = `linear-gradient(to right, #00FFB2 ${parsedValue}%, #2a3a37 ${parsedValue}%)`;
+                volumeLoaded = true;
+                break;
+            }
+        }
+    }
+    
+    if (!volumeLoaded) {
+        volumeSlider.value = 50;
+        bgMusic.volume = 0.5;
+        volumeSlider.style.background = `linear-gradient(to right, #00FFB2 50%, #2a3a37 50%)`;
+    }
 
     function updatePlayPauseButton() {
         const playIcon = playPauseBtn.querySelector('.play-icon');
@@ -39,6 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
         bgMusic.volume = value / 100;
         const percent = value;
         this.style.background = `linear-gradient(to right, #00FFB2 ${percent}%, #2a3a37 ${percent}%)`;
+        
+        // 쿠키에 볼륨 값 저장 (30일 유효기간)
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = `volume=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
     });
 
     document.addEventListener('click', function() {
@@ -111,3 +141,38 @@ function updateText() {
         mainText.style.opacity = '1';
     }, 1000);
 }
+
+document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 't') {
+        isTrailEnabled = !isTrailEnabled;
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isContentVisible && isTrailEnabled) {
+        if (Math.random() > 0) { // 30% 확률로 별 생성
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            
+            // 랜덤한 크기 설정 (15px ~ 25px)
+            const size = Math.random() * 10 + 5;
+            trail.style.width = size + 'px';
+            trail.style.height = size + 'px';
+            
+            // 위치 설정
+            trail.style.left = (e.pageX - size/2) + 'px';
+            trail.style.top = (e.pageY - size/2) + 'px';
+            
+            // 랜덤한 회전 각도 설정
+            const rotation = Math.random() * 360;
+            trail.style.transform = `rotate(${rotation}deg)`;
+            
+            document.body.appendChild(trail);
+            
+            // 애니메이션 완료 후 요소 제거
+            trail.addEventListener('animationend', () => {
+                document.body.removeChild(trail);
+            });
+        }
+    }
+});

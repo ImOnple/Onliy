@@ -10,6 +10,33 @@ body {
     align-items: center;
     overflow-x: hidden;
     user-select: none;
+    position: relative;
+}
+
+.trail {
+    position: fixed;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    z-index: 9999;
+    transform-origin: center center;
+    clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0 50%, 35% 35%);
+    background: #00ffb3;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.4),
+                0 0 20px rgba(255, 255, 0, 0.2),
+                0 0 30px rgba(255, 255, 0, 0.1);
+    animation: fall 1s ease-in forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200px) rotate(180deg);
+        opacity: 0;
+    }
 }
 
 h2 {
@@ -191,8 +218,14 @@ p:hover, h2:hover {
     background: linear-gradient(0deg, rgba(0, 255, 178, 0.2), rgba(0, 0, 0, 0.8));
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: all 0.3s ease;
     overflow-x: hidden;
+}
+
+.content:active {
+    transform: scale(0.98) translateY(50px);
+    box-shadow: 0 0 15px rgba(0, 255, 178, 0.3);
+    border-color: rgba(0, 255, 178, 0.8);
 }
 
 .click-message {
@@ -287,6 +320,12 @@ p:hover, h2:hover {
 
 .social-link:hover i {
     transform: scale(1.1);
+}
+
+.content:hover {
+    transform: rotateX(5deg) rotateY(5deg) translateY(50px);
+    box-shadow: -10px -10px 20px rgba(0, 255, 178, 0.1),
+                10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .social-link:hover img {
